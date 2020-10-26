@@ -17,9 +17,11 @@
         <RepositoryType>GitHub</RepositoryType>
         <PackageTags>elsa, workflows</PackageTags>
         <PackageIcon>icon.png</PackageIcon>
+        <PackageId>Sis.Elsa.Dashboard</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
+        
         <None Include="icon.png">
             <Pack>True</Pack>
             <PackagePath />
@@ -28,6 +30,7 @@
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        
     </ItemGroup>
 
     <ItemGroup>
@@ -37,6 +40,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\core\Elsa.Abstractions\Elsa.Abstractions.csproj" />
         <ProjectReference Include="..\..\core\Elsa.Core\Elsa.Core.csproj" />
+        <ProjectReference Include="..\..\core\Elsa\Elsa.csproj" />
         <ProjectReference Include="..\Elsa.WorkflowDesigner\Elsa.WorkflowDesigner.csproj" />
     </ItemGroup>
 
@@ -80,5 +84,25 @@
       <_ContentIncludedByDefault Remove="wwwroot\assets\js\workflow-editor.js" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\js\workflow-instance-viewer.js" />
     </ItemGroup>
-
+    <ItemGroup>
+        <Folder Include="wwwroot\assets\js\plugins\elsa-workflows\types\components\field-editors\file-field\" />
+        <Folder Include="wwwroot\assets\js\plugins\elsa-workflows\types\components\field-editors\radio-field\" />
+    </ItemGroup>
+    <!--<ItemGroup Condition="$(VisualStudioVersion) == '16.0'">
+        <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+            <HintPath>$(SSDTPath)\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTesting, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+            <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+            <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+    </ItemGroup>
+    <PropertyGroup>
+        <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
+    </PropertyGroup>-->
 </Project>

@@ -67,3 +67,4 @@ gulp.task('copy-scripts-npm', function (done) {
 gulp.task('open-app', gulp.series('open', 'watch'));
 gulp.task('build', gulp.series('compile-scss', 'copy-styles', 'copy-scripts', 'copy-scripts-npm', 'copy-fonts', 'copy-images'));
 gulp.task('build-styles', gulp.series('compile-scss', 'copy-styles'));
+// gulp.task('default', gulp.series('compile-scss', 'copy-styles', 'copy-scripts', 'copy-scripts-npm', 'copy-fonts', 'copy-images'));

@@ -17,6 +17,7 @@
         <RepositoryType>GitHub</RepositoryType>
         <PackageTags>elsa, workflows, orchard</PackageTags>
         <PackageIcon>icon.png</PackageIcon>
+        <PackageId>Sis.Elsa.Core</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
