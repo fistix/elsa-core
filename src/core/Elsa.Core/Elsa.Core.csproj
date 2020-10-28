@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
@@ -17,7 +17,7 @@
         <RepositoryType>GitHub</RepositoryType>
         <PackageTags>elsa, workflows, orchard</PackageTags>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageId>Sis.Elsa.Core</PackageId>
+        <PackageId>Elsa.Core</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
