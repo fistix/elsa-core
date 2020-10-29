@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -17,7 +17,7 @@
         <RepositoryType>GitHub</RepositoryType>
         <PackageTags>elsa, workflows</PackageTags>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageId>Sis.Elsa.Dashboard</PackageId>
+        <PackageId>Elsa.Dashboard</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
