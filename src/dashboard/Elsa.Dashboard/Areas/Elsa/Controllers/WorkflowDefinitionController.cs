@@ -14,6 +14,7 @@ using Elsa.Serialization;
 using Elsa.Serialization.Formatters;
 using Elsa.Services;
 using Elsa.WorkflowDesigner.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -21,6 +22,7 @@ namespace Elsa.Dashboard.Areas.Elsa.Controllers
 {
     [Area("Elsa")]
     [Route("[area]/workflow-definition")]
+    [Authorize]
     public class WorkflowDefinitionController : Controller
     {
         private readonly IWorkflowDefinitionStore workflowDefinitionStore;
