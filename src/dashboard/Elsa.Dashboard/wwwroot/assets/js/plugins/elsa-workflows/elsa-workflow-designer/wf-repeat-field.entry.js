@@ -86,9 +86,11 @@ class RepeatField {
     componentWillLoad() {
         const state = this.value ? JSON.parse(decodeURI(this.value)) : new Object();
         if (state) {
+            state["type"] = "Daily";
             Dictionary = { ...state }
         }
     }
+
     render() {
         debugger
         const name = this.name;
@@ -119,7 +121,7 @@ class RepeatField {
                 ),
                 h("div", { class: "m-2 form-check" },
                  h("label", { htmlFor: "wmTime"}, "At"),
-                 h("input", { id: "wmTime", name: "wmTime", class: "form-control", type: "time", value: value["time"], onchange: e => this.setTimeValue(e), disabled: value["type"] === "EMO" || value["type"] === "EWO" || value["type"] === "Daily" ? false :  true },)
+                    h("input", { id: "wmTime", name: "wmTime", class: "form-control", type: "time", value: value["time"], onchange: e => this.setTimeValue(e), disabled: value === new Object() ? value["type"] === "EMO" || value["type"] === "EWO" || value["type"] === "Daily" ? false : true : false },)
                 )
              )
 
