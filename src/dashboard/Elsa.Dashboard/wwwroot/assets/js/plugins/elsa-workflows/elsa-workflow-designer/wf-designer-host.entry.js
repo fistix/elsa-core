@@ -211,6 +211,24 @@ class SelectDynamicFieldDriver {
 }
 
 
+class FilterCriteriaFieldDriver {
+    constructor() {
+        this.displayEditor = (activity, property) => {
+            const name = property.name;
+            const label = property.label;
+            const value = activity.state[name] || '';
+            const items = property.options.items || [];
+            const itemsJson = encodeURI(JSON.stringify(items));
+            return `<wf-filtercriteria-field name="${name}" label="${label}" hint="${property.hint}" data-items="${itemsJson}" value="${value}"></wf-filtercriteria-field>`;
+        };
+        this.updateEditor = (activity, property, formData) => {
+            const value = formData.get(property.name).toString();
+            activity.state[property.name] = value.trim();
+        };
+    }
+}
+
+
 class SelectMessagingFieldDriver {
     constructor() {
         this.displayEditor = (activity, property) => {
@@ -767,6 +785,7 @@ class DesignerHost {
             DisplayManager.addDriver('repeat', new RepeatFieldDriver());
             DisplayManager.addDriver('trigger', new TriggerFieldDriver());
             DisplayManager.addDriver('file', new FileFieldDriver());
+            DisplayManager.addDriver('filter', new FilterCriteriaFieldDriver());
         };
         this.initWorkflow = () => {
             if (!!this.workflowData) {

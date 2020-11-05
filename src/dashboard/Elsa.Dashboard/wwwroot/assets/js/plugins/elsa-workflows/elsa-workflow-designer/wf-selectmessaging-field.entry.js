@@ -65,6 +65,17 @@ class SelectMessagingField {
             })
     };  
 
+    renderTemplateBody = (bodyContent) => {
+        if (bodyContent) {
+            document.getElementById("body").style = "height: 500px !important; overflow: scroll;",
+                document.getElementById("body").innerHTML = bodyContent
+        }
+        else {
+        }
+    }
+
+
+
     refresh() {
         document.getElementById(this.name).value = JSON.stringify(msgModel);
         this.element.forceUpdate();
@@ -115,16 +126,17 @@ class SelectMessagingField {
             h("select", { id: "optMsgs", name: "optMsgs", class: "custom-select", onchange: e => this.setValues(e) }, items.map(this.renderItem)),
             h("small", { class: "form-text text-muted" }, this.hint),
             h("br", {},),
-            h("label", {}, "To"),
-            h("input", { id: "to", name: "to", class: "form-control", readonly: true, value: MessagingState && MessagingState.to ? MessagingState.to : msgModel.to }, msgModel.to),
-            h("small", { class: "form-text text-muted" }, ""),
-            h("br", {},),
+            //h("label", {}, "To"),
+            //h("input", { id: "to", name: "to", class: "form-control", readonly: true, value: MessagingState && MessagingState.to ? MessagingState.to : msgModel.to }, msgModel.to),
+            //h("small", { class: "form-text text-muted" }, ""),
+            //h("br", {},),
             h("label", {}, "Subject"),
             h("input", { id: "subject", name: "subject", class: "form-control", readonly: true, value: MessagingState && MessagingState.subject ? MessagingState.subject : msgModel.subject }, msgModel.subject),
             h("small", { class: "form-text text-muted" }, ""),
             h("br", {},),
             h("label", {}, "Body"),
-            h("textarea", { id: "body", name: "body", class: "form-control", readonly: true, value: MessagingState && MessagingState.body ? MessagingState.body: msgModel.body }, msgModel.body),
+            h("div", {
+                id: "body", name: "body", class: "border p-2", readonly: true/*, value: MessagingState && MessagingState.body ? MessagingState.body: msgModel.body*/ }, this.renderTemplateBody(msgModel.body)),
             h("small", { class: "form-text text-muted" }, ""),
             h("br", {},),
             h("label", {}, "Media"),

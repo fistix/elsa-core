@@ -14,5 +14,6 @@ namespace Elsa.Design
         public const string Repeat = "repeat";
         public const string Trigger = "trigger";
         public const string File = "file";
+        public const string Filter = "filter";
     }
 }

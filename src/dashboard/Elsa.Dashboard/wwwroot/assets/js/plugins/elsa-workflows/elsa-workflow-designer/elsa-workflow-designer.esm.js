@@ -11,6 +11,8 @@ patchBrowser().then(options => {
 
         ["wf-selectdynamic-field", [[0, "wf-selectdynamic-field", { "name": [1], "label": [1], "value": [1], "hint": [1], "items": [1040] }]]],
 
+        ["wf-filtercriteria-field", [[0, "wf-filtercriteria-field", { "name": [1], "label": [1], "value": [1], "hint": [1], "items": [1040] }]]],
+
         ["wf-selectmessaging-field", [[0, "wf-selectmessaging-field", { "name": [1], "label": [1], "value": [1], "hint": [1], "items": [1040] }]]],
 
         ["wf-repeat-field", [[0, "wf-repeat-field", { "name": [1], "label": [1], "value": [1], "hint": [1], "items": [1040] }]]],

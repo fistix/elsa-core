@@ -11,7 +11,7 @@ import '../../../plugins/http-activities';
 import '../../../plugins/mass-transit-activities';
 import '../../../plugins/primitives-activities';
 import '../../../plugins/timer-activities';
-import { SelectDynamicFieldDriver, TriggerFieldDriver, FileFieldDriver, RepeatFieldDriver, SelectMessagingFieldDriver, RadioFieldDriver, DatetimeFieldDriver, BooleanFieldDriver, ExpressionFieldDriver, ListFieldDriver, SelectFieldDriver, TextFieldDriver } from "../../../drivers";
+import { FilterCriteriaFieldDriver, SelectDynamicFieldDriver, TriggerFieldDriver, FileFieldDriver, RepeatFieldDriver, SelectMessagingFieldDriver, RadioFieldDriver, DatetimeFieldDriver, BooleanFieldDriver, ExpressionFieldDriver, ListFieldDriver, SelectFieldDriver, TextFieldDriver } from "../../../drivers";
 export class DesignerHost {
     constructor() {
         this.activityDefinitions = [];
@@ -48,6 +48,7 @@ export class DesignerHost {
             DisplayManager.addDriver('repeat', new RepeatFieldDriver());
             DisplayManager.addDriver('trigger', new TriggerFieldDriver());
             DisplayManager.addDriver('file', new FileFieldDriver());
+            DisplayManager.addDriver('filter', new FilterCriteriaFieldDriver());
         };
         this.initWorkflow = () => {
             if (!!this.workflowData) {
