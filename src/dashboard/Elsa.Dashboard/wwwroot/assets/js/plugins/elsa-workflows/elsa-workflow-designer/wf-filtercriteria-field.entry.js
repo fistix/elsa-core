@@ -47,6 +47,12 @@ class FilterCriteriaField {
             return (h("optgroup", { label: group.label }, group.options.map(this.renderOption)));
         };
 
+        this.toggleModal = () => {
+            debugger
+            $("#filterModal").modal('hide');
+            //document.getElementById("filterModal").style.display = "none";
+        }
+
     }
     componentWillLoad() {
         const encodedJson = this.element.getAttribute('data-items');
@@ -163,17 +169,6 @@ class FilterCriteriaField {
 
     }
 
-    toggleModal = () => {
-        debugger
-        let x = document.getElementById("filterModal")
-        if (x.style.display === "none" || x.style.display === "") {
-            x.style.display = "block";
-        }
-        else {
-            x.style.display = "none";
-        }
-    }
-
 
     render() {
         const name = this.name;
@@ -193,14 +188,14 @@ class FilterCriteriaField {
                 h("div", { class: "modal-dialog" },
                     h("div", { class: "modal-content" },
                         h("div", { class: "modal-header" },
-                            h("h5", { class: "modal-title", id: "filterModal" }, "Selected Filter Criteria"),
+                            h("h5", { class: "modal-title", id: "filterModalTitle" }, "Selected Filter Criteria"),
                             h("button", { type: "button", class: "close", "data-dismiss": "modal", "aria-hidden": "true" },
                                 h("i", { class: "fa fa-times"})
                             )
                         ),
                         h("div", { id: "filterDetailsBody", class: "modal-body d-flex flex-wrap" }, Object.keys(filterDetails).sort().map(this.renderFilterDetails)),
                         h("div", { class: "modal-footer" },
-                            h("button", { onclick: this.toggleModal, type: "button", class: "btn btn-secondary", "data-dismiss": "modal" }, "Close")
+                            h("button", { onclick: this.toggleModal, type: "button", id:"btnClose", class: "btn btn-secondary" }, "Close")
                         )
                     )
                 )
