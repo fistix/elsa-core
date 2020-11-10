@@ -11,7 +11,7 @@ import '../../../plugins/http-activities';
 import '../../../plugins/mass-transit-activities';
 import '../../../plugins/primitives-activities';
 import '../../../plugins/timer-activities';
-import { FilterCriteriaFieldDriver, SelectDynamicFieldDriver, TriggerFieldDriver, FileFieldDriver, RepeatFieldDriver, SelectMessagingFieldDriver, RadioFieldDriver, DatetimeFieldDriver, BooleanFieldDriver, ExpressionFieldDriver, ListFieldDriver, SelectFieldDriver, TextFieldDriver } from "../../../drivers";
+import { SelectMessagingSmsFieldDriver, FilterCriteriaFieldDriver, SelectDynamicFieldDriver, TriggerFieldDriver, FileFieldDriver, RepeatFieldDriver, SelectMessagingFieldDriver, RadioFieldDriver, DatetimeFieldDriver, BooleanFieldDriver, ExpressionFieldDriver, ListFieldDriver, SelectFieldDriver, TextFieldDriver } from "../../../drivers";
 export class DesignerHost {
     constructor() {
         this.activityDefinitions = [];
@@ -45,6 +45,7 @@ export class DesignerHost {
             DisplayManager.addDriver('radio', new RadioFieldDriver());
             DisplayManager.addDriver('datetime', new DatetimeFieldDriver());
             DisplayManager.addDriver('selectmessaging', new SelectMessagingFieldDriver());
+            DisplayManager.addDriver('selectmessagingsms', new SelectMessagingSmsFieldDriver());
             DisplayManager.addDriver('repeat', new RepeatFieldDriver());
             DisplayManager.addDriver('trigger', new TriggerFieldDriver());
             DisplayManager.addDriver('file', new FileFieldDriver());

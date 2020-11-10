@@ -1,5 +1,5 @@
 import { r as registerInstance, h, H as Host, d as getElement } from './chunk-25ccd4a5.js';
-class SelectMessagingField {
+class SelectMessagingSmsField {
     constructor(hostRef) {
         registerInstance(this, hostRef);
         this.renderItem = (item) => {
@@ -57,9 +57,9 @@ class SelectMessagingField {
                 let res = { ...data }
                 console.log("Data OnSelect", res);
                 msgModel.subject = res.Subject;
-                msgModel.body = res.Body && res.Body != undefined ? res.Body : "";//res.Message;
-                msgModel.to = res.ToEmailAddress && res.ToEmailAddress != undefined ? res.ToEmailAddress : "";
-                msgModel.files = res.Files && res.Files.length > 0 ? res.Files : "";//res.MediaUrl
+                msgModel.body = res.Message && res.Message != undefined ? res.Message : "";// res.Body : res.Message;
+                //msgModel.to = res.ToEmailAddress && res.ToEmailAddress != undefined ? res.ToEmailAddress : "";
+                msgModel.files = res.MediaUrl ? res.MediaUrl : "";//res.Files : res.MediaUrl
                 msgModel.template = document.getElementById("optMsgs").value
                 this.refresh()
             })
@@ -182,14 +182,14 @@ class SelectMessagingField {
             //),
             h("small", { class: "form-text text-muted" }, ""),
             h("br", {},),
-            h("label", {}, "File Attachments"),
+            h("label", {}, "Media"),
             h("input", {
                 id: "media", name: "media", class: "form-control", readonly: true,
                 value: MessagingState && MessagingState.files && typeof (MessagingState.files) != 'string'
                     ? MessagingState.files.length > 0 ? MessagingState.files.join(', ')
                         : /*typeof (MessagingState.files) == 'string' ?*/ MessagingState.files : msgModel && typeof (msgModel.files) != 'string' ? msgModel.files.join(',') : msgModel.files
             }, msgModel.subject),
-            h("small", { class: "form-text text-muted" }, "file attachments."),
+            h("small", { class: "form-text text-muted" }, "Media attachments."),
             h("div", { class: "d-inline" }, typeof (msgModel.files) != 'string' && msgModel.files.length > 0 ? msgModel.files.map(this.renderMediaThumbnails) : this.renderMediaThumbnails(msgModel.files)),
             h("input", { id: name, name: name, class: "form-control", type: "hidden" }),
 
@@ -204,4 +204,4 @@ const optModel = { sourceApi: String, detailsApi: String };
 let MessagingState = { to: "", body: "", subject: "", files: [], name: "", title: "", description: "", template: "", mediaUrl: "", message: "" }
 
 
-export { SelectMessagingField as wf_selectmessaging_field };
+export { SelectMessagingSmsField as wf_selectmessagingsms_field };

@@ -189,7 +189,7 @@ class FilterCriteriaField {
                     h("div", { class: "modal-content" },
                         h("div", { class: "modal-header" },
                             h("h5", { class: "modal-title", id: "filterModalTitle" }, "Selected Filter Criteria"),
-                            h("button", { type: "button", class: "close", "data-dismiss": "modal", "aria-hidden": "true" },
+                            h("button", { type: "button", class: "close", onclick: this.toggleModal, "aria-hidden": "true" },
                                 h("i", { class: "fa fa-times"})
                             )
                         ),

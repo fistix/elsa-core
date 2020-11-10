@@ -15,6 +15,9 @@ patchBrowser().then(options => {
 
         ["wf-selectmessaging-field", [[0, "wf-selectmessaging-field", { "name": [1], "label": [1], "value": [1], "hint": [1], "items": [1040] }]]],
 
+        ["wf-selectmessagingsms-field", [[0, "wf-selectmessagingsms-field", { "name": [1], "label": [1], "value": [1], "hint": [1], "items": [1040] }]]],
+
+
         ["wf-repeat-field", [[0, "wf-repeat-field", { "name": [1], "label": [1], "value": [1], "hint": [1], "items": [1040] }]]],
 
 

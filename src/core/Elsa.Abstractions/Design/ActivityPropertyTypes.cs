@@ -10,7 +10,8 @@ namespace Elsa.Design
         public const string SelectDynamic = "selectDynamic";
         public const string Radio = "radio";
         public const string DateTime = "datetime";
-        public const string SelectMessaging = "selectmessaging";
+        public const string SelectMessagingEmail = "selectmessaging";
+        public const string SelectMessagingSms = "selectmessagingsms";
         public const string Repeat = "repeat";
         public const string Trigger = "trigger";
         public const string File = "file";

@@ -264,6 +264,42 @@ class SelectMessagingFieldDriver {
 }
 
 
+class SelectMessagingSmsFieldDriver {
+    constructor() {
+        this.displayEditor = (activity, property) => {
+            const name = property.name;
+            const label = property.label;
+            const value = activity.state[name] || '';
+            debugger
+            const stateValue = encodeURI(JSON.stringify(activity.state));
+            const items = property.options.items || [];
+            const itemsJson = encodeURI(JSON.stringify(items));
+            return `<wf-selectmessagingsms-field name="${name}" label="${label}" hint="${property.hint}" stateVals="${stateValue}" data-items="${itemsJson}" value="${value}"></wf-selectmessagingsms-field>`;
+        };
+
+        this.updateEditor = (activity, property, formData) => {
+            debugger
+            if (property.type === "selectmessaging") {
+                const value = formData.get(property.name);
+                if (value != "") {
+                    let messagingData = JSON.parse(value);
+                    activity.state["template"] = messagingData.template;
+                    activity.state["subject"] = messagingData.subject;
+                    activity.state["body"] = messagingData.body;
+                    activity.state["to"] = messagingData.to;
+                    activity.state["files"] = messagingData.files;
+                }
+            }
+            else {
+                const value = formData.get(property.name).toString();
+                activity.state[property.name] = value.trim();
+            }
+        };
+    }
+}
+
+
+
 class RepeatFieldDriver {
     constructor() {
         this.displayEditor = (activity, property) => {
@@ -782,6 +818,7 @@ class DesignerHost {
             DisplayManager.addDriver('radio', new RadioFieldDriver());
             DisplayManager.addDriver('datetime', new DatetimeFieldDriver());
             DisplayManager.addDriver('selectmessaging', new SelectMessagingFieldDriver());
+            DisplayManager.addDriver('selectmessagingsms', new SelectMessagingSmsFieldDriver());
             DisplayManager.addDriver('repeat', new RepeatFieldDriver());
             DisplayManager.addDriver('trigger', new TriggerFieldDriver());
             DisplayManager.addDriver('file', new FileFieldDriver());
