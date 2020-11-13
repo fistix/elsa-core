@@ -46,6 +46,12 @@ class SelectMessagingField {
         this.renderGroup = (group) => {
             return (h("optgroup", { label: group.label }, group.options.map(this.renderOption)));
         };
+
+
+        this.toggleModal = () => {
+            $("#templateDetailsModal").modal('hide');
+        }
+
     }
 
     setValues = (e) => {
@@ -160,37 +166,80 @@ class SelectMessagingField {
         const items = this.items || [];
         return (h(Host, null,
             h("label", { htmlFor: name }, label),
-            h("select", { id: "optMsgs", name: "optMsgs", class: "custom-select", onchange: e => this.setValues(e) }, items.map(this.renderItem)),
-            h("small", { class: "form-text text-muted" }, this.hint),
-            h("br", {},),
-            //h("label", {}, "To"),
-            //h("input", { id: "to", name: "to", class: "form-control", readonly: true, value: MessagingState && MessagingState.to ? MessagingState.to : msgModel.to }, msgModel.to),
+            h("div", { class: "d-flex" }, 
+            h("select", { id: "optMsgs", name: "optMsgs", class: "custom-select", onchange: e => this.setValues(e) }, items.sort().map(this.renderItem)),
+            h("button", { type: "button", class: "btn btn-default", "data-toggle": "modal", "data-target": "#templateDetailsModal" }, "View Template Details"),
+            ),
+
+            h("div", { class: "modal fade", id: "templateDetailsModal", tabindex: "-1", role: "dialog", "aria-labelledby": "templateDetailsModalLabel", "aria-hidden": "true" },
+                h("div", { class: "modal-dialog rounded border border-info", role: "document" },
+                    h("div", { class: "modal-content" },
+                        h("div", { class: "modal-header" },
+                            h("h5", { class: "modal-title", id: "templateDetailsModalLabel" }, "Template Details"),
+                            h("button", { type: "button", class: "close", onclick: this.toggleModal, "aria-label": "Close"}, 
+                                h("i", { class: "fa fa-times" }))
+                        ),
+                        h("div", { class: "modal-body" },
+                            h("label", {}, "Subject"),
+                            h("input", { id: "subject", name: "subject", class: "form-control", readonly: true, value: MessagingState && MessagingState.subject ? MessagingState.subject : msgModel.subject }, msgModel.subject),
+                            h("small", { class: "form-text text-muted" }, ""),
+                            h("br", {},),
+                            h("label", {}, "Body"),
+                            h("div", {
+                                id: "txtBody", name: "txtBody", class: "border p-2", readonly: true/*, value: MessagingState && MessagingState.body ? MessagingState.body: msgModel.body*/
+                            }),
+                            //(MessagingState && MessagingState.body ?
+                            //    this.renderTemplateBody(MessagingState.body) :
+                            //    msgModel && msgModel.body ?
+                            //        this.renderTemplateBody(msgModel.body) : null),
+                            //),
+                            h("small", { class: "form-text text-muted" }, ""),
+                            h("br", {},),
+                            h("label", {}, "File Attachments"),
+                            h("input", {
+                                id: "media", name: "media", class: "form-control", readonly: true,
+                                value: MessagingState && MessagingState.files && typeof (MessagingState.files) != 'string'
+                                    ? MessagingState.files.length > 0 ? MessagingState.files.join(', ')
+                                        : /*typeof (MessagingState.files) == 'string' ?*/ MessagingState.files : msgModel && typeof (msgModel.files) != 'string' ? msgModel.files.join(',') : msgModel.files
+                            }, msgModel.subject),
+                            h("small", { class: "form-text text-muted" }, "file attachments."),
+                            h("div", { class: "d-inline" }, typeof (msgModel.files) != 'string' && msgModel.files.length > 0 ? msgModel.files.map(this.renderMediaThumbnails) : this.renderMediaThumbnails(msgModel.files))
+                        ),
+                        h("div", { class: "modal-footer" },
+                            h("button", { type: "button", class: "btn btn-secondary", onclick: this.toggleModal }, "Close")
+                        )
+                )
+            )
+        ),
+
+
+            //
+            //h("label", {}, "Subject"),
+            //h("input", { id: "subject", name: "subject", class: "form-control", readonly: true, value: MessagingState && MessagingState.subject ? MessagingState.subject : msgModel.subject }, msgModel.subject),
             //h("small", { class: "form-text text-muted" }, ""),
             //h("br", {},),
-            h("label", {}, "Subject"),
-            h("input", { id: "subject", name: "subject", class: "form-control", readonly: true, value: MessagingState && MessagingState.subject ? MessagingState.subject : msgModel.subject }, msgModel.subject),
-            h("small", { class: "form-text text-muted" }, ""),
-            h("br", {},),
-            h("label", {}, "Body"),
-            h("div", {
-                id: "txtBody", name: "txtBody", class: "border p-2", readonly: true/*, value: MessagingState && MessagingState.body ? MessagingState.body: msgModel.body*/
-            },),
-            //(MessagingState && MessagingState.body ?
-            //    this.renderTemplateBody(MessagingState.body) :
-            //    msgModel && msgModel.body ?
-            //        this.renderTemplateBody(msgModel.body) : null),
-            //),
-            h("small", { class: "form-text text-muted" }, ""),
-            h("br", {},),
-            h("label", {}, "File Attachments"),
-            h("input", {
-                id: "media", name: "media", class: "form-control", readonly: true,
-                value: MessagingState && MessagingState.files && typeof (MessagingState.files) != 'string'
-                    ? MessagingState.files.length > 0 ? MessagingState.files.join(', ')
-                        : /*typeof (MessagingState.files) == 'string' ?*/ MessagingState.files : msgModel && typeof (msgModel.files) != 'string' ? msgModel.files.join(',') : msgModel.files
-            }, msgModel.subject),
-            h("small", { class: "form-text text-muted" }, "file attachments."),
-            h("div", { class: "d-inline" }, typeof (msgModel.files) != 'string' && msgModel.files.length > 0 ? msgModel.files.map(this.renderMediaThumbnails) : this.renderMediaThumbnails(msgModel.files)),
+            //h("label", {}, "Body"),
+            //h("div", {
+            //    id: "txtBody", name: "txtBody", class: "border p-2", readonly: true/*, value: MessagingState && MessagingState.body ? MessagingState.body: msgModel.body*/
+            //}),
+            ////(MessagingState && MessagingState.body ?
+            ////    this.renderTemplateBody(MessagingState.body) :
+            ////    msgModel && msgModel.body ?
+            ////        this.renderTemplateBody(msgModel.body) : null),
+            ////),
+            //h("small", { class: "form-text text-muted" }, ""),
+            //h("br", {},),
+            //h("label", {}, "File Attachments"),
+            //h("input", {
+            //    id: "media", name: "media", class: "form-control", readonly: true,
+            //    value: MessagingState && MessagingState.files && typeof (MessagingState.files) != 'string'
+            //        ? MessagingState.files.length > 0 ? MessagingState.files.join(', ')
+            //            : /*typeof (MessagingState.files) == 'string' ?*/ MessagingState.files : msgModel && typeof (msgModel.files) != 'string' ? msgModel.files.join(',') : msgModel.files
+            //}, msgModel.subject),
+            //h("small", { class: "form-text text-muted" }, "file attachments."),
+            //h("div", { class: "d-inline" }, typeof (msgModel.files) != 'string' && msgModel.files.length > 0 ? msgModel.files.map(this.renderMediaThumbnails) : this.renderMediaThumbnails(msgModel.files)),
+            //
+
             h("input", { id: name, name: name, class: "form-control", type: "hidden" }),
 
         ));
