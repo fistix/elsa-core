@@ -10,6 +10,7 @@ using Elsa.Extensions;
 using Elsa.Models;
 using Elsa.Persistence;
 using Elsa.WorkflowDesigner.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -17,6 +18,7 @@ namespace Elsa.Dashboard.Areas.Elsa.Controllers
 {
     [Area("Elsa")]
     [Route("[area]/workflow-instance")]
+    [Authorize]
     public class WorkflowInstanceController : Controller
     {
         private readonly IWorkflowInstanceStore workflowInstanceStore;
