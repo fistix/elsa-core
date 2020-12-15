@@ -120,6 +120,26 @@ namespace Elsa.Dashboard.Areas.Elsa.Controllers
             return RedirectToAction("Index", "WorkflowDefinition");
         }
 
+        [HttpPost("abort/{id}")]
+        public async Task<IActionResult> Abort(string id, string returnUrl, CancellationToken cancellationToken)
+        {
+            var instance = await workflowInstanceStore.GetByIdAsync(id, cancellationToken);
+
+            if (instance == null)
+                return NotFound();
+
+            instance.Status = WorkflowStatus.Aborted;
+            instance.AbortedAt = NodaTime.Instant.FromDateTimeUtc(System.DateTime.UtcNow);
+            await workflowInstanceStore.SaveAsync(instance, cancellationToken);
+            
+            notifier.Notify("Workflow instance successfully aborted.", NotificationType.Success);
+
+            if (Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
+
+            return RedirectToAction("Index", "WorkflowDefinition");
+        }
+
         private ActivityModel CreateActivityModel(
             ActivityDefinition activityDefinition,
             WorkflowInstance workflowInstance)
