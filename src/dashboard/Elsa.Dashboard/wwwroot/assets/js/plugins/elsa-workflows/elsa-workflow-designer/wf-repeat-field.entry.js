@@ -47,6 +47,8 @@ class RepeatField {
             document.getElementById("week").disabled = false;
             document.getElementById("month").disabled = true;
             document.getElementById("wmTime").disabled = false;
+            Dictionary["type"] = "EWO";
+            document.getElementById("repeatType").value = JSON.stringify(Dictionary);
             //document.getElementById("repeatType").value = JSON.stringify(KeyValuePair);
         }
         else if (val.target.value == "EMO") {
@@ -55,6 +57,8 @@ class RepeatField {
             document.getElementById("month").disabled = false;
             document.getElementById("week").disabled = true;
             document.getElementById("wmTime").disabled = false;
+            Dictionary["type"] = "EMO";
+            document.getElementById("repeatType").value = JSON.stringify(Dictionary);
             //document.getElementById("repeatType").value = JSON.stringify(KeyValuePair);
         }
         else {
