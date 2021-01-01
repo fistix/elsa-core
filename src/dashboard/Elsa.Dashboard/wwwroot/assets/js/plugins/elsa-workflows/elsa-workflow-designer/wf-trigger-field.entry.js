@@ -18,7 +18,7 @@ class TriggerField {
 
     refresh(mode) {
         if (mode && document.getElementById("startNow").checked) {
-            document.getElementById(this.name).value = new Date().toLocaleString("sv-SE", {
+            document.getElementById(this.name).value = new Date().toLocaleString("en-US", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
@@ -58,7 +58,7 @@ class TriggerField {
     render() {
         debugger
         const name = this.name;
-        const value = this.value ? new Date(this.value).toLocaleString("sv-SE", {
+        const value = this.value ? new Date(this.value).toLocaleString("en-US", {
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
