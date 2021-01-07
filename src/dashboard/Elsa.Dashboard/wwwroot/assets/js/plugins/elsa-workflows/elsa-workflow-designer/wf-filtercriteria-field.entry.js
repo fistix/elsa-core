@@ -176,16 +176,16 @@ class FilterCriteriaField {
         const items = this.items || [];
         return (h(Host, null,
             h("label", { htmlFor: name }, label),
-            h("div", { class: "d-flex"}, 
-            h("select", { id: name, name: name, class: "custom-select", onchange: e => this.setValues(e) }, items.map(this.renderItem)),
-            h("button", { id: 'btnfilter', onclick: this.renderFilterDetails, name: 'btnfilter', type: "button", class: "btn btn-default", "data-toggle": "modal", "data-target": "#filterModal" }, "Show Filter Criteria"),
+            h("div", { class: "d-flex" },
+                h("select", { id: name, name: name, class: "custom-select", onchange: e => this.setValues(e) }, items.sort().map(this.renderItem)),
+                h("button", { id: 'btnfilter', onclick: this.renderFilterDetails, name: 'btnfilter', type: "button", class: "btn btn-default", "data-toggle": "modal", "data-target": "#filterModal" }, "Show Filter Criteria"),
             ),
             h("div", {
                 class: "modal fade",
                 id: "filterModal", tabindex: "-1", role: "dialog", "aria-labelledby": "filterModal", "aria-hidden": "true"
             },
 
-                h("div", { class: "modal-dialog" },
+                h("div", { class: "modal-dialog modal-sm" },
                     h("div", { class: "modal-content" },
                         h("div", { class: "modal-header" },
                             h("h5", { class: "modal-title", id: "filterModalTitle" }, "Selected Filter Criteria"),
@@ -200,16 +200,14 @@ class FilterCriteriaField {
                     )
                 )
 
-
             ),
 
             h("small", { class: "form-text text-muted" }, this.hint)));
     }
     get element() { return getElement(this); }
-    static get style() { return ""; }
+    static get style() { return "#filterDetailsBody{height: 5%;}"; }
 }
 
 let filterDetails = new Object();
 const optModel = { sourceApi: String, detailsApi: String };
-
 export { FilterCriteriaField as wf_filtercriteria_field };

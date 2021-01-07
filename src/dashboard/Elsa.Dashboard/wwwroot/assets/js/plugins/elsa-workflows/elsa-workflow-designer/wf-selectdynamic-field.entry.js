@@ -112,7 +112,7 @@ class SelectDynamicField {
         const items = this.items || [];
         return (h(Host, null,
             h("label", { htmlFor: name }, label),
-            h("select", { id: name, name: name, class: "custom-select" }, items.map(this.renderItem)),
+            h("select", { id: name, name: name, class: "custom-select" }, items.sort().map(this.renderItem)),
             h("small", { class: "form-text text-muted" }, this.hint)));
     }
     get element() { return getElement(this); }
