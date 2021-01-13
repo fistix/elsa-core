@@ -218,6 +218,7 @@ class FilterCriteriaFieldDriver {
             const label = property.label;
             const value = activity.state[name] || '';
             const items = property.options.items || [];
+
             const itemsJson = encodeURI(JSON.stringify(items));
             return `<wf-filtercriteria-field name="${name}" label="${label}" hint="${property.hint}" data-items="${itemsJson}" value="${value}"></wf-filtercriteria-field>`;
         };

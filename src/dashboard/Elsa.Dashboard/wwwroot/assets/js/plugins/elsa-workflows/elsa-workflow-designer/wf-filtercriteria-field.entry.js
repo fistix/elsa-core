@@ -82,46 +82,9 @@ class FilterCriteriaField {
                 console.log("CheckOptions", data);
                 this.items = data;
                 this.items.splice(0, 0, "");
+                isLoading = false;
             });
-
-        //debugger
-        //this.renderOption = (option) => {
-
-        //    if (option && option.api) { console.log(option.api); }
-        //    else {
-        //        console.log(option);
-
-        //        return fetch(option, {
-        //    //headers: {
-        //    //    'Access-Control-Allow-Origin': 'https://localhost:44322',
-        //    //    'Access-Control-Allow-Methods': 'POST, GET'
-        //    //}
-        //    //crossDomain: true
-        //})
-        //    .then(response => response.json())
-        //    .then(data => {
-        //        console.log("CheckOptions", data);
-        //        this.items = data;
-        //    });
-
-        //    }
-        //}
-
-        //return fetch('https://localhost:44322/api/Trigger', {
-        //    //headers: {
-        //    //    'Access-Control-Allow-Origin': 'https://localhost:44322',
-        //    //    'Access-Control-Allow-Methods': 'POST, GET'
-        //    //}
-        //    //crossDomain: true
-        //})
-        //    .then(response => response.json())
-        //    .then(data => {
-        //        console.log("CheckOptions", data);
-        //        this.items = data;
-        //    });
-
     }
-
 
     setValues = (e) => {
         debugger
@@ -177,6 +140,7 @@ class FilterCriteriaField {
         return (h(Host, null,
             h("label", { htmlFor: name }, label),
             h("div", { class: "d-flex" },
+                isLoading ? h("div", {class:"fa-2x"}, h("i", { class: "fas fa-spinner  fa-spin"},"")) :
                 h("select", { id: name, name: name, class: "custom-select", onchange: e => this.setValues(e) }, items.sort().map(this.renderItem)),
                 h("button", { id: 'btnfilter', onclick: this.renderFilterDetails, name: 'btnfilter', type: "button", class: "btn btn-default", "data-toggle": "modal", "data-target": "#filterModal" }, "Show Filter Criteria"),
             ),
@@ -208,6 +172,7 @@ class FilterCriteriaField {
     static get style() { return "#filterDetailsBody{height: 5%;}"; }
 }
 
+let isLoading = true;
 let filterDetails = new Object();
 const optModel = { sourceApi: String, detailsApi: String };
 export { FilterCriteriaField as wf_filtercriteria_field };
